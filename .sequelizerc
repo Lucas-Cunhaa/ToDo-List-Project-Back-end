@@ -1,0 +1,8 @@
+const path = require('path');
+const config = {
+    'config' : path.resolve('src', 'config', 'config.js')
+};
+const models = {
+    'models' : path.resolve('src', 'models')
+};
+module.exports = { config, models } ;
