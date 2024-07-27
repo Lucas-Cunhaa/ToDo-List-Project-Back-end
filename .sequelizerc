@@ -1,15 +1,7 @@
 const path = require('path');
-const config = {
-    'config' : path.resolve('src', 'config', 'config.js')
+module.exports =  {
+    'config' : path.resolve('src', 'config', 'config.js') ,
+    'migrations-path': path.resolve(__dirname, 'src/migrations'),
+    'models-path': path.resolve(__dirname, 'src/models'),
+    'seeders-path': path.resolve(__dirname, 'src/seeders'),
 };
-const models = {
-    'models' : path.resolve('src', 'models')
-};
-const migrations = {
-    'migrations' : path.resolve('src', 'migrations')
-}
-console.log(migrations)
-console.log(models)
-console.log(config)
-
-module.exports = { config, models, migrations } ;
