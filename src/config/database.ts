@@ -1,11 +1,12 @@
 import dotenv from 'dotenv';
+
+dotenv.config(); 
 const p = process.env 
 const dbHost = p.DB_HOST;
 const dbName = p.DB_NAME;
 const dbUser = p.DB_USER;
 const dbPassword = p.DB_PASSWORD
 const dbDialect = p.DB_DIALECT
-dotenv.config(); 
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(dbName, dbUser, dbPassword, {

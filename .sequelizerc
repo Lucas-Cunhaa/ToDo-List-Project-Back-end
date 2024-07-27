@@ -5,4 +5,11 @@ const config = {
 const models = {
     'models' : path.resolve('src', 'models')
 };
-module.exports = { config, models } ;
+const migrations = {
+    'migrations' : path.resolve('src', 'migrations')
+}
+console.log(migrations)
+console.log(models)
+console.log(config)
+
+module.exports = { config, models, migrations } ;
