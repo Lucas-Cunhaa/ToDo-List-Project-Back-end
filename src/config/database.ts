@@ -1,17 +1,23 @@
 import dotenv from 'dotenv';
+import { Sequelize } from 'sequelize'
 
 dotenv.config(); 
-const p = process.env 
-const dbHost = p.DB_HOST;
-const dbName = p.DB_NAME;
-const dbUser = p.DB_USER;
-const dbPassword = p.DB_PASSWORD
-const dbDialect = p.DB_DIALECT
 
-const Sequelize = require('sequelize');
+const dbHost = process.env.DB_HOST;
+const dbName = process.env.DB_NAME;
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASSWORD;
+const dbDialect = process.env.DB_DIALECT
+const dbPort = process.env.DB_PORT
+
+if (!dbHost || !dbName || !dbUser || !dbPassword || !dbDialect || !dbPort) {
+  throw new Error('Missing required environment variables');
+}
+
 const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
     host: dbHost,
-    dialect: dbDialect,
+    dialect: dbDialect as 'postgres',
+    port: Number(dbPort) , 
     logging: true, // Desative o log para produção
   });
   
