@@ -1,50 +1,53 @@
 import dotenv from 'dotenv';
-import { Sequelize } from 'sequelize'
+import { Sequelize } from 'sequelize';
 
-dotenv.config(); 
+dotenv.config();
 
 const dbHost = process.env.DB_HOST;
 const dbName = process.env.DB_NAME;
 const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PASSWORD;
-const dbDialect = process.env.DB_DIALECT
-const dbPort = process.env.DB_PORT
+const dbDialect = process.env.DB_DIALECT;
+const dbPort = process.env.DB_PORT;
 
 if (!dbHost || !dbName || !dbUser || !dbPassword || !dbDialect || !dbPort) {
   throw new Error('Missing required environment variables');
 }
 
 const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
-    host: dbHost,
-    dialect: dbDialect as 'postgres',
-    port: Number(dbPort) , 
-    logging: true, // Desative o log para produção
-  });
-  
-  class SequelizeConnection  {
+  host: dbHost,
+  dialect: dbDialect as 'postgres',
+  port: Number(dbPort),
+  logging: true, 
+});
 
-     constructor(sequelize : any) {
-        this.connectDataBase() ;
-        this.syncDatabase() ;
+class SequelizeConnection {
+  private sequelize: Sequelize;
+
+  constructor(sequelize: Sequelize) {
+    this.sequelize = sequelize;
+    this.connectDataBase();
+    this.syncDatabase();
   }
 
-    async connectDataBase() {
-        try {
-            await sequelize.authenticate();
-            console.log("connected");
-          } catch (error) {
-            console.error(error);
-          }
+  async connectDataBase() {
+    try {
+      await this.sequelize.authenticate();
+      console.log("Database connection established successfully.");
+    } catch (error) {
+      console.error("Unable to connect to the database:", error);
     }
-
-    async syncDatabase() {
-        try{
-          await sequelize.sync( {alter:true} )
-        } catch (error) {
-          console.error(error)
-        }
-    }
-
   }
-  const connection = new SequelizeConnection(sequelize)
-  export default connection
+
+  async syncDatabase() {
+    try {
+      await this.sequelize.sync({ alter: true }); 
+      console.log("Database synchronized successfully.");
+    } catch (error) {
+      console.error("Error synchronizing the database:", error);
+    }
+  }
+}
+
+const connection = new SequelizeConnection(sequelize);
+export default connection;

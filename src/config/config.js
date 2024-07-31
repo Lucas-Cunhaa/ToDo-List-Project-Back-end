@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
-
+console.log(process.env)
 module.exports = {
   "development": {
     "username": process.env.DB_USER,
@@ -10,6 +10,7 @@ module.exports = {
     "dialect": process.env.DB_DIALECT,
     "logging": true
   },
+  
   "test": {
     "username": process.env.DB_USER,
     "password": process.env.DB_PASSWORD, 
@@ -27,3 +28,4 @@ module.exports = {
     "logging": true
   }
 };
+
