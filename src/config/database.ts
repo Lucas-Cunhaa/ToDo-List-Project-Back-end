@@ -18,10 +18,10 @@ const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
   host: dbHost,
   dialect: dbDialect as 'postgres',
   port: Number(dbPort),
-  logging: true, 
+  logging: true,
 });
 
-class SequelizeConnection {
+export class SequelizeConnection {
   private sequelize: Sequelize;
 
   constructor(sequelize: Sequelize) {
@@ -41,7 +41,7 @@ class SequelizeConnection {
 
   async syncDatabase() {
     try {
-      await this.sequelize.sync({ alter: true }); 
+      await this.sequelize.sync({ alter: true });
       console.log("Database synchronized successfully.");
     } catch (error) {
       console.error("Error synchronizing the database:", error);
@@ -49,5 +49,8 @@ class SequelizeConnection {
   }
 }
 
-const connection = new SequelizeConnection(sequelize);
-export default connection;
+
+const sequelizeConnection = new SequelizeConnection(sequelize);
+
+export default sequelize;
+export { sequelizeConnection };
