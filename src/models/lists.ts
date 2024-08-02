@@ -4,7 +4,7 @@ import { sequelizeConnection } from "../config/database";
 import sequelize from "../config/database";
 
 module.exports = (sequelize : Sequelize, DataTypes : any) => {
-  class Tasks extends Model {
+  class Lists extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -14,7 +14,7 @@ module.exports = (sequelize : Sequelize, DataTypes : any) => {
       // define association here
     }
   }
-  Tasks.init(
+  Lists.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -30,7 +30,15 @@ module.exports = (sequelize : Sequelize, DataTypes : any) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      user_id: {
+      list_id: {
+        type: DataTypes.INTERGER,
+        allowNull: false,
+        references: {
+          model: 'lists', 
+          key: 'id'
+        }, 
+      },
+     member_id: {
         type: DataTypes.INTERGER,
         allowNull: false,
         references: {
@@ -49,9 +57,9 @@ module.exports = (sequelize : Sequelize, DataTypes : any) => {
     },
     {
       sequelize,
-      modelName: 'Tasks',
+      modelName: 'Lists',
       timestamps: true, 
     }
   );
-  return Tasks;
+  return Lists;
 };
