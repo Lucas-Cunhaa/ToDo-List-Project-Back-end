@@ -1,15 +1,16 @@
 'use strict';
 import { Model, DataTypes, Sequelize } from "sequelize";
-import { sequelizeConnection } from "../config/database";
 import sequelize from "../config/database";
 
-module.exports = (sequelize : Sequelize, DataTypes : any) => {
   class Tasks extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+    public id!: number;
+    public title!: string;
+    public description!: string;
+    public list_id!: number;
+    public member_id!: number;
+    public readonly createdAt!: Date;
+    public readonly updatedAt!: Date;
+
     static associate(models : Model) {
       // define association here
     }
@@ -30,13 +31,23 @@ module.exports = (sequelize : Sequelize, DataTypes : any) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      user_id: {
-        type: DataTypes.INTERGER,
+      list_id : {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'lists', 
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
+      },
+      member_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: 'users', 
           key: 'id'
         }, 
+        onDelete: 'CASCADE'
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -53,5 +64,5 @@ module.exports = (sequelize : Sequelize, DataTypes : any) => {
       timestamps: true, 
     }
   );
-  return Tasks;
-};
+
+export default Tasks
