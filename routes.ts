@@ -5,5 +5,6 @@ import { TaskController } from "./src/api/controllers/userController";
 
 const route = Express.Router()
 
+route.post('/todo/register', User)
 export default route
 

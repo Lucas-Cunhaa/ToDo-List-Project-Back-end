@@ -1,5 +1,5 @@
 import Users from "../../models/users";
 
-export class TaskController {
-
+export class UserController {
+    
 }
