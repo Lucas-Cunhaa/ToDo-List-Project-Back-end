@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { Sequelize } from 'sequelize';
-
+import { Model } from 'sequelize'
 dotenv.config();
 
 const dbHost = process.env.DB_HOST;
@@ -27,7 +27,6 @@ export class SequelizeConnection {
   constructor(sequelize: Sequelize) {
     this.sequelize = sequelize;
     this.connectDataBase();
-    this.syncDatabase();
   }
 
   async connectDataBase() {
@@ -39,10 +38,10 @@ export class SequelizeConnection {
     }
   }
 
-  async syncDatabase() {
+  async syncDatabase(model: typeof Model) {
     try {
-      await this.sequelize.sync({ alter: true });
-      console.log("Database synchronized successfully.");
+      await model.sync({ alter: true });
+      console.log(`${model} synchronized successfully.`);
     } catch (error) {
       console.error("Error synchronizing the database:", error);
     }

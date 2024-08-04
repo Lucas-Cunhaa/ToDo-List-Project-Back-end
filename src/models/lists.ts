@@ -1,7 +1,7 @@
 'use strict';
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
-
+import users from './users';
 class Lists extends Model {
   public id!: number;
   public title!: string;
