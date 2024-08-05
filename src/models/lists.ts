@@ -1,7 +1,7 @@
 'use strict';
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
-import users from './users';
+import {ModelsInterface } from '../interface/models';
 class Lists extends Model {
   public id!: number;
   public title!: string;
@@ -10,9 +10,16 @@ class Lists extends Model {
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
-  static associate(models: any) {
-    // define association here
-  }
+  static associate(models: ModelsInterface) {
+    Lists.belongsTo(models.Users, { 
+      as: 'user',
+      foreignKey: 'user_id'
+    }), 
+    Lists.hasMany(models.Tasks, {
+      as: 'task', 
+      foreignKey: 'list_id'
+    })
+  } 
 }
 
 Lists.init(

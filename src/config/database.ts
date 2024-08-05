@@ -46,6 +46,7 @@ export class SequelizeConnection {
       console.error("Error synchronizing the database:", error);
     }
   }
+ 
 }
 
 
