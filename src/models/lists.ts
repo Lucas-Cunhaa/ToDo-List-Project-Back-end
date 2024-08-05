@@ -2,6 +2,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
 import {ModelsInterface } from '../interface/models';
+
 class Lists extends Model {
   public id!: number;
   public title!: string;
