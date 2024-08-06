@@ -1,15 +1,29 @@
-import Users from "../models/users";
-import Lists from "../models/lists";
-import Tasks from "../models/tasks";
+import { Model } from "sequelize";
 
-export interface ModelsInterface {
-    Users :  typeof Users; 
-    Lists :  typeof Lists;
-    Tasks :  typeof Tasks; 
+export interface userInterface extends Model {
+    id: number; 
+    name: string; 
+    email: string; 
+    password: string; 
+    createdAt: Date; 
+    updatedAt: Date; 
 }
 
-export const models : ModelsInterface = {
-    "Users" : Users ,
-    "Lists" : Lists , 
-    "Tasks" : Tasks ,
+export interface listsInterface extends Model {
+    id: number; 
+    title: string; 
+    description: string; 
+    user_id: number; 
+    createdAt: Date; 
+    updatedAt: Date; 
+}
+
+export interface tasksInterface extends Model {
+    id: number; 
+    title: string; 
+    description: string; 
+    lists_id : number
+    member_id: number; 
+    createdAt: Date; 
+    updatedAt: Date; 
 }

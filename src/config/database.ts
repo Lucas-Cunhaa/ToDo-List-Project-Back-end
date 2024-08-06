@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 import { Sequelize } from 'sequelize';
 import { Model } from 'sequelize'
-import { models } from '../interface/models';
 dotenv.config();
 
 const dbHost = process.env.DB_HOST;
@@ -48,22 +47,6 @@ export class SequelizeConnection {
     }
   }
 
-  async syncModels() {
-    try{
-    models.Users.associate(models)
-    models.Lists.associate(models)
-    models.Tasks.associate(models)
-  }
-    catch (error) {
-      console.error(error)
-  }
-    finally {
-      console.log("Models updated")
-    }
-
-  }
-  
- 
 }
 
 
