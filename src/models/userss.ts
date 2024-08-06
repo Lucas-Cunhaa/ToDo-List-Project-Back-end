@@ -32,9 +32,5 @@ const User = sequelize.define<userInterface>(
           allowNull: false,
         },
       },
-      {
-        sequelize,
-        modelName: 'Users',
-        timestamps: true, 
-      }
+     
 );
