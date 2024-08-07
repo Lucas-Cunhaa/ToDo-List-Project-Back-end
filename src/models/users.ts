@@ -1,8 +1,8 @@
-import { Model, DataTypes} from 'sequelize'
+import { DataTypes } from 'sequelize'
 import  sequelize from '../config/database'
 import { userInterface } from '../interface/models';
-
-const User = sequelize.define<userInterface>(
+import { List } from './lists';
+export const User = sequelize.define<userInterface>(
     'User', 
     {
         id: {
@@ -32,6 +32,13 @@ const User = sequelize.define<userInterface>(
           allowNull: false,
         },
       },
-      
-     
+      {
+        modelName: 'List',
+        timestamps: true, 
+      }
 );
+User.hasMany(List, {
+  sourceKey: 'id', 
+  foreignKey: 'user_id', 
+  as: 'lists'
+})

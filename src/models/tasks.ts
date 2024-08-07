@@ -1,8 +1,8 @@
 import { Model, DataTypes} from 'sequelize'
 import  sequelize from '../config/database'
 import { tasksInterface } from '../interface/models';
-
-const Tasks = sequelize.define<tasksInterface>(
+import { List } from './lists';
+export const Task = sequelize.define<tasksInterface>(
     'Tasks', 
     {
       id: {
@@ -47,8 +47,16 @@ const Tasks = sequelize.define<tasksInterface>(
       },
     },
     {
-      modelName: 'Tasks',
+      modelName: 'Task',
       timestamps: true, 
     }
      
 );
+
+Task.belongsTo(List, {
+  foreignKey: 'list_id', 
+  targetKey: 'id',
+  as: 'lists'
+})
+
+
