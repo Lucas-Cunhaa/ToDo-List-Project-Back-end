@@ -6,9 +6,14 @@ export class UserQueries extends SequelizeConnection{
         super(sequelize)
         this.syncDatabase(User) ;
     }
-    
-    async createUser(name: string, email : string, password : string) {
 
+    async createUser(name: string, email : string, password : string) {
+        try{
+            const data = await User.create( {name: name, email: email, password: password}); 
+            console.log(data, "Created")
+        } catch (error) {
+            console.error("ERROR ON CREATE USER", error)
+        } 
     }
     async getUserByEmail(email : string){
         try{

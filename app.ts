@@ -1,4 +1,4 @@
-import   Express  from 'express'
+import Express  from 'express'
 import cors from 'cors'
 import routes from './routes'
 const app = Express()

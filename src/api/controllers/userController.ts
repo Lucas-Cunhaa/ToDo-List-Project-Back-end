@@ -1,9 +1,19 @@
-import Users from "../../models/users";
+import { UserQueries } from "../../database/userQueries";
+import sequelize from "../../config/database";
 
-export class UserController {
-    constructor(){}
+const userQueries = new UserQueries(sequelize)
 
-    createUser(){
-        
+const UserController = {
+    registerUser: async (req : any, res : any) => {
+    try{
+        const { name, email, password } = req.body 
+        const data = await userQueries.createUser(name, email, password)
+        res.status(200).send(data)
+    }catch (error) {
+        console.error("ERROR ON CONTROLLER CREATE USER", error)
+        return res.status(400).json({ error: 'Failed'})
+    }
     }
 }
+    
+export default UserController;
