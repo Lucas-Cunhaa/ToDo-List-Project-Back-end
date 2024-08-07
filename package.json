@@ -18,9 +18,7 @@
     "typescript": "^5.5.3"
   },
   "scripts": {
-    "server": "nodemon app.js",
-    "start": "set NODE_ENV=localhost && npm run server",
-    "dev": "set NODE_ENV=development && npm run server",
-    "production": "set NODE_ENV=production && npm run server"
+    "start": "node app.ts",
+    "dev": "nodemon app.ts"
   }
 }
