@@ -23,7 +23,6 @@ export interface tasksInterface extends Model {
     title: string; 
     description: string; 
     lists_id : number
-    member_id: number; 
     createdAt: Date; 
     updatedAt: Date; 
 }

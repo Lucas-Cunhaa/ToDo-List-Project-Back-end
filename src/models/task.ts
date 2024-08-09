@@ -1,9 +1,9 @@
 import { Model, DataTypes} from 'sequelize'
 import  sequelize from '../config/database'
 import { tasksInterface } from '../interface/models';
-import { List } from './lists';
-export const Task = sequelize.define<tasksInterface>(
-    'Tasks', 
+import { List } from './list';
+export const Task = sequelize.define(
+    'Task', 
     {
       id: {
         type: DataTypes.INTEGER,
@@ -28,15 +28,6 @@ export const Task = sequelize.define<tasksInterface>(
         },
         onDelete: 'CASCADE'
       },
-      member_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'users', 
-          key: 'id'
-        }, 
-        onDelete: 'CASCADE'
-      },
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -52,11 +43,10 @@ export const Task = sequelize.define<tasksInterface>(
     }
      
 );
-
 Task.belongsTo(List, {
   foreignKey: 'list_id', 
   targetKey: 'id',
-  as: 'lists'
+  as: 'list'
 })
 
 

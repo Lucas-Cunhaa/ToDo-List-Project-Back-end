@@ -1,10 +1,11 @@
 import { Model, DataTypes} from 'sequelize'
 import  sequelize from '../config/database'
 import { listsInterface } from '../interface/models';
-import { User } from './users';
-import { Task } from './tasks';
+import { User } from './user';
+import { Task } from './task';
+
 export const List = sequelize.define<listsInterface>(
-    'Lists', 
+    'List', 
     {
       id: {
         type: DataTypes.INTEGER,
@@ -54,5 +55,5 @@ List.belongsTo(User, {
 List.hasMany(Task, {
   foreignKey: 'list_id', 
   sourceKey: 'id', 
-  as: 'tasks'
+  as: 'task'
 })

@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
 import  sequelize from '../config/database'
 import { userInterface } from '../interface/models';
-import { List } from './lists';
+import { List } from './list';
 export const User = sequelize.define<userInterface>(
     'User', 
     {
@@ -33,12 +33,12 @@ export const User = sequelize.define<userInterface>(
         },
       },
       {
-        modelName: 'List',
+        modelName: 'User',
         timestamps: true, 
       }
 );
 User.hasMany(List, {
   sourceKey: 'id', 
   foreignKey: 'user_id', 
-  as: 'lists'
+  as: 'list'
 })
