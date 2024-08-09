@@ -14,10 +14,10 @@ if (!dbHost || !dbName || !dbUser || !dbPassword || !dbDialect || !dbPort) {
   throw new Error('Missing required environment variables');
 }
 
-const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
-  host: dbHost,
-  dialect: dbDialect as 'postgres',
-  port: Number(dbPort),
+const sequelize = new Sequelize("to_do_project", "postgres", "12345", {
+  host: "localhost",
+  dialect: 'postgres',
+  port: Number(5432),
   logging: true,
 });
 

@@ -1,4 +1,4 @@
-import { User } from "../models/user";
+import  { User }  from "../models/models";
 import { SequelizeConnection } from "../config/database";
 
 export class UserQueries extends SequelizeConnection{
