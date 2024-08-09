@@ -120,11 +120,16 @@ export const List = sequelize.define(
   }
    
 );
-
-Task.belongsTo(List, {
-  foreignKey: 'list_id', 
-  targetKey: 'id',
+User.hasMany(List, {
+  sourceKey: 'id', 
+  foreignKey: 'user_id', 
   as: 'list'
+})
+
+List.belongsTo(User, {
+  foreignKey: 'user_id', 
+  targetKey: 'id',
+  as: 'user'
 })
 
 List.hasMany(Task, {
@@ -133,14 +138,13 @@ List.hasMany(Task, {
   as: 'task'
 })
 
-User.hasMany(List, {
-  sourceKey: 'id', 
-  foreignKey: 'user_id', 
+Task.belongsTo(List, {
+  foreignKey: 'list_id', 
+  targetKey: 'id',
   as: 'list'
 })
-List.belongsTo(User, {
-  foreignKey: 'user_id', 
-  targetKey: 'id',
-  as: 'user'
-})
+
+
+
+
 
