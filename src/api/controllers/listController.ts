@@ -1,4 +1,4 @@
-import Lists from "../../models/lists"
+import List from "../../models/models"
 export class ListController {
 
 }

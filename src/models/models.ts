@@ -1,9 +1,8 @@
-import { Model, DataTypes} from 'sequelize'
+import { DataTypes } from 'sequelize'
 import  sequelize from '../config/database'
-import { tasksInterface } from '../interface/models';
 
 export const User = sequelize.define(
-  'User', 
+  'user', 
   {
       id: {
         type: DataTypes.INTEGER,
@@ -38,7 +37,7 @@ export const User = sequelize.define(
     }
 );
  export const Task = sequelize.define(
-    'Task', 
+    'task', 
     {
       id: {
         type: DataTypes.INTEGER,
@@ -80,7 +79,7 @@ export const User = sequelize.define(
 );
 
 export const List = sequelize.define(
-  'List', 
+  'list', 
   {
     id: {
       type: DataTypes.INTEGER,
