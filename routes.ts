@@ -5,5 +5,6 @@ import  UserController  from "./src/api/controllers/userController";
 const route = Express.Router()
 
 route.post('/todo/register', UserController.registerUser )
+route.get('/todo/login', UserController.loginUser)
 export default route
 
