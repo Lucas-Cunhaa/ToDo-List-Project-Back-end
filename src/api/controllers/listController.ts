@@ -17,6 +17,19 @@ const listController = {
             console.error("ERROR ON CREATE LIST CONTROLLER", error)
             res.status(404).send({error: "error on creating a list"})
         }
+    },
+    getUserLists: async (req: Request, res: Response) => {
+        try {
+            const user_id = parseInt(req.params.id) 
+            const data = await listQueries.getAllLists(user_id)
+            if(data){
+                res.status(200).send(data)
+            } else {
+                res.status(204).send("None list found")
+            }
+        } catch(error) {
+            console.error("ERROR ON GET USER LISTS", error)
+        }
     }
 }
 

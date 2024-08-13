@@ -9,6 +9,6 @@ route.get('/todo/login', userController.loginUser)
 route.delete('/todo/delete/:id', userController.deleteUser)
 
 route.post('/todo/home', listController.createList)
-route.get('/todo/home', listController.createList)
+route.get('/todo/home/:id', listController.getUserLists)
 export default route
 
