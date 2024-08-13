@@ -10,5 +10,6 @@ route.delete('/todo/delete/:id', userController.deleteUser)
 
 route.post('/todo/home', listController.createList)
 route.get('/todo/home/:id', listController.getUserLists)
+route.delete('/todo/home/:id', listController.deleteList)
 export default route
 

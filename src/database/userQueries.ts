@@ -50,7 +50,4 @@ export class UserQueries extends SequelizeConnection{
             console.error("ERROR ON DELETE USER", error )
         }
     }
-
-   
-  
 }

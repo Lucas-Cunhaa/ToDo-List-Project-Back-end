@@ -18,6 +18,7 @@ const listController = {
             res.status(404).send({error: "error on creating a list"})
         }
     },
+
     getUserLists: async (req: Request, res: Response) => {
         try {
             const user_id = parseInt(req.params.id) 
@@ -29,6 +30,20 @@ const listController = {
             }
         } catch(error) {
             console.error("ERROR ON GET USER LISTS", error)
+        }
+    },
+
+    deleteList: async (req: Request, res: Response) => {
+        try{
+            const id = parseInt(req.params.id) 
+            const data = await listQueries.deleteList(id)
+            if (data) {
+                res.status(200).send("List has been deleted")
+            } else {
+                res.status(400).send({ error: 'Error on delete List' });
+            }
+        } catch(error) {
+            console.error("ERROR ON DELETE USER", error)
         }
     }
 }
