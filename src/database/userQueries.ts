@@ -1,5 +1,6 @@
 import  { User }  from "../models/models";
 import { SequelizeConnection } from "../config/database";
+import { UserData } from "../api/lib/userData";
 
 
 export class UserQueries extends SequelizeConnection{
@@ -8,12 +9,12 @@ export class UserQueries extends SequelizeConnection{
         this.syncDatabase(User) ;
     }
 
-    async createUser(name: string, email : string, password : string) {
+    async createUser(user : UserData) {
         try{
             const data = await User.create( {
-                name: name,
-                email: email,
-                password: password
+                name: user.getName(),
+                email: user.getEmail(),
+                password: user.getPassword()
             }); 
             console.log(data, "Created")
         } catch (error) {

@@ -1,27 +1,29 @@
 import { UserQueries } from "../../database/userQueries";
 import { Request, Response } from "express";
 import sequelize from "../../config/database";
+import { UserData } from "../lib/userData";
 
 const userQueries = new UserQueries(sequelize)
 
 const userController = {
     registerUser: async (req : Request, res : Response) => {
-    try{
+    try {
         const { name, email, password } = req.body 
+        const user = new UserData(name, email, password)
         const emailExists = await userQueries.getUserByEmail(email)
         if (emailExists) {
             res.status(409).send({ error: 'User already exists' });
         } else {
-            const data = await userQueries.createUser(name, email, password)
+            const data = await userQueries.createUser(user)
             res.status(200).send("Register sucefully")
         }
-    }catch (error) {
+    } catch (error) {
         console.error("ERROR ON CONTROLLER CREATE USER", error)
         return res.status(400).json({ error: 'Failed'})
         }
     }, 
      loginUser: async (req: Request, res: Response) => {
-        try{
+        try {
             const {email, password} = req.body
             const data = await userQueries.getUserByEmailAndPassword(email, password)
             if (data) {
@@ -34,7 +36,7 @@ const userController = {
         }
     },
     deleteUser : async (req: Request, res: Response) => {
-        try{
+        try {
             const id = parseInt(req.params.id)
             const data = await userQueries.deleteUser(id)
             if (data) {
