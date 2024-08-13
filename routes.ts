@@ -6,5 +6,6 @@ const route = Express.Router()
 
 route.post('/todo/register', UserController.registerUser )
 route.get('/todo/login', UserController.loginUser)
+route.delete('/todo/delete/:id', UserController.deleteUser)
 export default route
 

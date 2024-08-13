@@ -20,8 +20,7 @@ const UserController = {
         return res.status(400).json({ error: 'Failed'})
         }
     }, 
-
-    loginUser: async (req: Request, res: Response) => {
+     loginUser: async (req: Request, res: Response) => {
         try{
             const {email, password} = req.body
             const data = await userQueries.getUserByEmailAndPassword(email, password)
@@ -34,6 +33,19 @@ const UserController = {
             console.error("ERROR ON CONTROLLER LOGIN USER", error)
         }
     },
+    deleteUser : async (req: Request, res: Response) => {
+        try{
+            const id = parseInt(req.params.id)
+            const data = await userQueries.deleteUser(id)
+            if (data) {
+                res.status(200).send("User has been deleted")
+            } else {
+                res.status(400).send({ error: 'Error on delete User' });
+            }
+        } catch (error) {
+            console.error("ERROR ON DELETE USER", error)
+        }
+    }
 }
     
 export default UserController;

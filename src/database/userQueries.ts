@@ -1,5 +1,6 @@
 import  { User }  from "../models/models";
 import { SequelizeConnection } from "../config/database";
+import  Params  from "express";
 
 export class UserQueries extends SequelizeConnection{
     constructor(sequelize : any ){
@@ -33,7 +34,16 @@ export class UserQueries extends SequelizeConnection{
         } catch(error) {
             console.error("ERROR ON getUserByEmailAndPassword", error)
         }
-    }   
+    }
+    
+    async deleteUser(id: number) {
+        try {   
+            const data = await User.destroy({ where: {id: id } })
+            return data
+        } catch (error) {
+            console.error("ERROR ON DELETE USER", error )
+        }
+    }
 
    
   
