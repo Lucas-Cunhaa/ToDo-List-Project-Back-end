@@ -53,6 +53,10 @@ export const User = sequelize.define(
         type: DataTypes.STRING,
         allowNull: false,
       },
+      state: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      } ,
       list_id : {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -60,6 +64,15 @@ export const User = sequelize.define(
           model: 'lists', 
           key: 'id'
         },
+        onDelete: 'CASCADE'
+      },
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'users', 
+          key: 'id'
+        }, 
         onDelete: 'CASCADE'
       },
       createdAt: {
