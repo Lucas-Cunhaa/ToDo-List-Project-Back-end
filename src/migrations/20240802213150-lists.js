@@ -4,7 +4,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
      const { DataTypes } = Sequelize
-     await queryInterface.createTable('lists', { 
+     await queryInterface.createTable('tasks', { 
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

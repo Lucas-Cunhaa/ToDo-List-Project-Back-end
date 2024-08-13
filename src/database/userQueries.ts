@@ -1,6 +1,6 @@
 import  { User }  from "../models/models";
 import { SequelizeConnection } from "../config/database";
-import  Params  from "express";
+
 
 export class UserQueries extends SequelizeConnection{
     constructor(sequelize : any ){
@@ -10,7 +10,11 @@ export class UserQueries extends SequelizeConnection{
 
     async createUser(name: string, email : string, password : string) {
         try{
-            const data = await User.create( {name: name, email: email, password: password}); 
+            const data = await User.create( {
+                name: name,
+                email: email,
+                password: password
+            }); 
             console.log(data, "Created")
         } catch (error) {
             console.error("ERROR ON CREATE USER", error)

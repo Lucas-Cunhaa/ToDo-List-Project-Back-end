@@ -1,11 +1,14 @@
 import Express  from "express";
 import { TaskController  } from "./src/api/controllers/taskController";
-import { ListController  } from "./src/api/controllers/listController"; 
-import  UserController  from "./src/api/controllers/userController";
+import  listController   from "./src/api/controllers/listController"; 
+import  userController  from "./src/api/controllers/userController";
 const route = Express.Router()
 
-route.post('/todo/register', UserController.registerUser )
-route.get('/todo/login', UserController.loginUser)
-route.delete('/todo/delete/:id', UserController.deleteUser)
+route.post('/todo/register', userController.registerUser )
+route.get('/todo/login', userController.loginUser)
+route.delete('/todo/delete/:id', userController.deleteUser)
+
+route.post('/todo/home', listController.createList)
+route.get('/todo/home', listController.createList)
 export default route
 

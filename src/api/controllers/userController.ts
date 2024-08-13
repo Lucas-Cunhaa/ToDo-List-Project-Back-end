@@ -4,7 +4,7 @@ import sequelize from "../../config/database";
 
 const userQueries = new UserQueries(sequelize)
 
-const UserController = {
+const userController = {
     registerUser: async (req : Request, res : Response) => {
     try{
         const { name, email, password } = req.body 
@@ -48,4 +48,4 @@ const UserController = {
     }
 }
     
-export default UserController;
+export default userController;
