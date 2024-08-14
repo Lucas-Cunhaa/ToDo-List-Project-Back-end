@@ -17,6 +17,7 @@ export const User = sequelize.define(
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true
       },
       password: {
         type: DataTypes.STRING,
@@ -66,7 +67,7 @@ export const User = sequelize.define(
         },
         onDelete: 'CASCADE'
       },
-      user_id: {
+      member_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
@@ -137,7 +138,11 @@ User.hasMany(List, {
   foreignKey: 'user_id', 
   as: 'list'
 })
-
+User.hasMany(Task, {
+  sourceKey:'id', 
+  foreignKey:'user_id', 
+  as: 'task'
+})
 List.belongsTo(User, {
   foreignKey: 'user_id', 
   targetKey: 'id',
@@ -155,7 +160,11 @@ Task.belongsTo(List, {
   targetKey: 'id',
   as: 'list'
 })
-
+Task.belongsTo(User, {
+  foreignKey: 'user_id', 
+  targetKey: 'id',
+  as: 'user'
+})
 
 
 

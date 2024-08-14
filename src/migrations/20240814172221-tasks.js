@@ -20,7 +20,7 @@ module.exports = {
         allowNull: false
       },
       state: {
-        type: DataTypes.STRING,
+         type: DataTypes.STRING,
         allowNull: false
       }, 
       list_id: {
@@ -56,6 +56,11 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('tasks'); 
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     * await queryInterface.dropTable('users');
+     */
   }
 };
