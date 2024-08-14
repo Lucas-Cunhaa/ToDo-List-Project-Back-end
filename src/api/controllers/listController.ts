@@ -1,6 +1,6 @@
-import { ListQueries } from "../../database/listQueries";
 import { Request, Response } from "express";
 import { ListData } from "../lib/listData";
+import { ListQueries } from "../../database/listQueries";
 import sequelize from "../../config/database";
 
 const listQueries = new ListQueries(sequelize)
@@ -28,7 +28,7 @@ const listController = {
             } else {
                 res.status(204).send("None list found")
             }
-        } catch(error) {
+        } catch (error) {
             console.error("ERROR ON GET USER LISTS", error)
         }
     },
@@ -42,7 +42,7 @@ const listController = {
             } else {
                 res.status(400).send({ error: 'Error on delete List' });
             }
-        } catch(error) {
+        } catch (error) {
             console.error("ERROR ON DELETE USER", error)
         }
     }

@@ -1,7 +1,7 @@
-import { UserQueries } from "../../database/userQueries";
 import { Request, Response } from "express";
-import sequelize from "../../config/database";
 import { UserData } from "../lib/userData";
+import { UserQueries } from "../../database/userQueries";
+import sequelize from "../../config/database";
 
 const userQueries = new UserQueries(sequelize)
 

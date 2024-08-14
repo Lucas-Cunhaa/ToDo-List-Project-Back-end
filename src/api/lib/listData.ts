@@ -22,8 +22,8 @@ export class ListData {
         this.Description = description
     }
     setUserId (user_id: number) {
-        if(typeof user_id !== 'number' || user_id <= 0) {
-            throw new Error("user_id cannot be null")
+        if( user_id <= 0) {
+            throw new Error("user_id cannot be null on class")
         }
         this.User_id = user_id
     }

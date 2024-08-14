@@ -1,8 +1,10 @@
-import  { List }  from "../models/models";
+import { Sequelize  } from "sequelize";
 import { SequelizeConnection } from "../config/database";
+import  { List }  from "../models/models";
 import { ListData } from "../api/lib/listData";
+
 export class ListQueries extends SequelizeConnection {
-    constructor(sequelize :any) {
+    constructor(sequelize : Sequelize) {
         super(sequelize) 
         this.syncDatabase(List)
     }
@@ -14,7 +16,7 @@ export class ListQueries extends SequelizeConnection {
                 description: list.getDescription(), 
                 user_id: list.getUserId()
             })
-        } catch(error) {
+        } catch (error) {
             console.error("ERROR ON CREATE LIST QUERIE", error)
         }
     }
@@ -23,7 +25,7 @@ export class ListQueries extends SequelizeConnection {
         try {
             const data = await List.findAll({ where : {user_id: user_id} })
             return data
-        } catch(error) {
+        } catch (error) {
             console.error("ERROR ON GET ALL LISTS QUERIE", error)
         }
     }

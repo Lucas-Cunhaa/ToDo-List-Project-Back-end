@@ -1,10 +1,10 @@
-import  { User }  from "../models/models";
+import { Sequelize  } from "sequelize";
 import { SequelizeConnection } from "../config/database";
+import  { User }  from "../models/models";
 import { UserData } from "../api/lib/userData";
 
-
 export class UserQueries extends SequelizeConnection{
-    constructor(sequelize : any ){
+    constructor(sequelize : Sequelize){
         super(sequelize)
         this.syncDatabase(User) ;
     }
@@ -26,7 +26,7 @@ export class UserQueries extends SequelizeConnection{
         try{
             const data = await User.findOne({ where: {email: email} });
             return data
-        } catch(error) {
+        } catch (error) {
             console.error("ERROR ON getUserByEmail", error)
         }
     }
@@ -37,7 +37,7 @@ export class UserQueries extends SequelizeConnection{
                 where: {email : email, password : password}
             })
              return data
-        } catch(error) {
+        } catch (error) {
             console.error("ERROR ON getUserByEmailAndPassword", error)
         }
     }
