@@ -18,6 +18,8 @@ export class TaskQueries extends SequelizeConnection {
                 list_id: task.getListId(),
                 member_id: task.getMemberId(),
             })
+            return data
+
         } catch (error) {
             console.error("ERROR ON CREATE TGASK QUERIE", error)
         }
@@ -28,6 +30,19 @@ export class TaskQueries extends SequelizeConnection {
             return data
         } catch (error) {
             console.error("ERROR ON GET ALL TASKS QUERIE", error)
+        }
+    }
+
+    async updateTask(id: number, newState: string) {
+        try {
+            const change = await Task.update(
+                {state: newState}, 
+                {where: {id: id} },  
+            )
+            return change
+            
+        } catch (error) {
+            console.error("ERROR ON UPDATE QUERIE TASK", error)
         }
     }
 }

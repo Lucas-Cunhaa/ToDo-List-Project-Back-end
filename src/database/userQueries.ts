@@ -16,7 +16,6 @@ export class UserQueries extends SequelizeConnection{
                 email: user.getEmail(),
                 password: user.getPassword()
             }); 
-            console.log(data, "Created")
             return data
         } catch (error) {
             console.error("ERROR ON CREATE USER", error)

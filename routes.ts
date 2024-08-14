@@ -14,5 +14,7 @@ route.delete('/todo/home/:id', listController.deleteList)
 
 route.post('/todo/tasks', taskController.createTask)
 route.get('/todo/tasks/:id', taskController.getListTasks)
+route.put('/todo/tasks/:id', taskController.changeState)
+
 export default route
 

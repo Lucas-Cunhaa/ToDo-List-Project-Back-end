@@ -12,7 +12,12 @@ const listController = {
             parseInt(user_id)
             const list = new ListData(title, description, user_id)
             const data = await listQueries.createList(list)
-            res.status(200).send({message: "List Created"})
+            if(data) {
+                res.status(200).send({message: "List Created"})
+            } else {
+                throw new Error()
+            }
+            
         } catch (error) {
             console.error("ERROR ON CREATE LIST CONTROLLER", error)
             res.status(404).send({error: "error on creating a list"})

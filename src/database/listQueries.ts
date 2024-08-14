@@ -16,6 +16,7 @@ export class ListQueries extends SequelizeConnection {
                 description: list.getDescription(), 
                 user_id: list.getUserId()
             })
+            return data
         } catch (error) {
             console.error("ERROR ON CREATE LIST QUERIE", error)
         }
