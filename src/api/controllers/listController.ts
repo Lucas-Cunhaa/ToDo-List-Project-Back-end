@@ -22,13 +22,14 @@ const listController = {
     getUserLists: async (req: Request, res: Response) => {
         try {
             const user_id = parseInt(req.params.id) 
-            const data = await listQueries.getAllLists(user_id)
-            if(data){
-                res.status(200).send(data)
+            const lists = await listQueries.getAllLists(user_id)
+            if(lists){
+                res.status(200).send(lists)
             } else {
                 res.status(204).send("None list found")
             }
         } catch (error) {
+            res.status(404).send("Cannot get lists")
             console.error("ERROR ON GET USER LISTS", error)
         }
     },
