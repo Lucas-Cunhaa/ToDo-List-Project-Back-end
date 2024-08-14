@@ -19,6 +19,10 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false
       },
+      state: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }, 
       list_id: {
         type: DataTypes.INTEGER,
         references: {
@@ -27,7 +31,7 @@ module.exports = {
         }, 
         allowNull: false , 
         onUpdate: 'CASCADE', 
-        onDelete: 'SET NULL' 
+        onDelete: 'CASCADE' 
       },
       member_id: {
         type: DataTypes.INTEGER,
@@ -35,7 +39,7 @@ module.exports = {
           model: 'users', 
           key: 'id'
         }, 
-        allowNull: false , 
+        allowNull: true , 
         onUpdate: 'CASCADE', 
         onDelete: 'SET NULL' 
       } ,
@@ -52,11 +56,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.dropTable('tasks'); 
   }
 };

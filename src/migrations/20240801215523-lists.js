@@ -27,7 +27,7 @@ module.exports = {
         }, 
         allowNull: false , 
         onUpdate: 'CASCADE', 
-        onDelete: 'SET NULL' 
+        onDelete: 'CASCADE' 
       },
       
       createdAt: {
@@ -43,7 +43,7 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('tasks');    
+    await queryInterface.dropTable('lists');    
     /**
      * Add reverting commands here.
      *
