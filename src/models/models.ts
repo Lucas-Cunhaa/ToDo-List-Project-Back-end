@@ -56,7 +56,8 @@ export const User = sequelize.define(
       },
       state: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
+        defaultValue: "To Do"
       } ,
       list_id : {
         type: DataTypes.INTEGER,
