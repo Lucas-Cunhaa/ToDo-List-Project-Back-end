@@ -45,4 +45,11 @@ export class TaskQueries extends SequelizeConnection {
             console.error("ERROR ON UPDATE QUERIE TASK", error)
         }
     }
+
+    async deleteTask(id: number) {
+        const data = await Task.destroy(
+            {where: {id: id} }
+        )
+        return data
+    }
 }

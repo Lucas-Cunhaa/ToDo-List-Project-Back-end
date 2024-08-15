@@ -50,6 +50,18 @@ const taskController = {
         } catch (error) {
             res.status(404).send(null)
         }
+    },
+
+    deleteTask: async (req: Request, res: Response) => {
+       try {
+           const id = parseInt(req.params.id) 
+           const data = await taskQueries.deleteTask(id)
+           checkData(data, res, MESSAGES.DELETET_SUCCESS, MESSAGES.DELETET_FAIL)
+
+       } catch (error) {
+           console.error("ERROR ON DELETE TASK CONTROLLER", error)
+       }
+       
     }
 }
 
