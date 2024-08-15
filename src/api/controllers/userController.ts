@@ -18,7 +18,7 @@ const userController = {
         const user = new UserData(name, email, password)
         const emailExists = await userQueries.getUserByEmail(email)
 
-        if (!emailExists) {
+        if (emailExists) {
              return res.status(409).json({ error: MESSAGES.USER_EXISTS });
         } 
         
@@ -34,11 +34,7 @@ const userController = {
         try {
             const {email, password} = req.body
             const data = await userQueries.getUserByEmailAndPassword(email, password)
-            if (data) {
-                res.status(200).send("Login sucefuly")
-            } else {
-                res.status(401).send({ error: 'Invalid credentials' });
-            }
+            checkData(data, res, MESSAGES.LOGIN_SUCCESS, MESSAGES.INVALID_CREDENTIALS)
         } catch (error) {
             console.error("ERROR ON CONTROLLER LOGIN USER", error)
         }
@@ -47,11 +43,7 @@ const userController = {
         try {
             const id = parseInt(req.params.id)
             const data = await userQueries.deleteUser(id)
-            if (data) {
-                res.status(200).send("User has been deleted")
-            } else {
-                res.status(400).send({ error: 'Error on delete User' });
-            }
+            checkData(data, res, MESSAGES.DELETE_SUCCESS, MESSAGES.DELETE_FAIL)
         } catch (error) {
             console.error("ERROR ON DELETE USER", error)
         }

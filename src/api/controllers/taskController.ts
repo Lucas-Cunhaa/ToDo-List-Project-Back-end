@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { TaskData } from "../lib/taskData";
 import { TaskQueries } from "../../database/taskQueries";
+import { MESSAGES } from "../lib/messages";
+import { checkData } from "../lib/checkData";
 import sequelize from "../../config/database";
 
 const taskQueries = new TaskQueries(sequelize)
@@ -13,14 +15,9 @@ const taskController = {
             parseInt(list_id)
             const task = new TaskData(title, description, state, list_id, member_id)
             const data = await taskQueries.createTask(task)
-            if (data) {
-                res.status(200).send("Task created")
-            } else {
-                throw new Error()
-            }
+            checkData(data, res, MESSAGES.CREATE_SUCESS, MESSAGES.CREATEC_FAIL)
         } catch (error) {
             console.error("ERROR ON CREATE TASK CONTROLLER", error)
-            res.status(404).send({error: "error on creating a task"})
         }
     }, 
 
@@ -31,10 +28,10 @@ const taskController = {
             if(tasks) {
                 res.status(200).send(tasks)
             } else {
-                res.status(204).send("None task found")
+                res.status(204).send(MESSAGES.TASK_UNFOUNDED)
             }
         } catch (error) {
-            res.status(404).send("Cannot get tasks")
+            res.status(404).send(MESSAGES.LOADT_FAIL)
             console.error("ERROR ON GET LIST TASKS", error)
         }
     } , 
