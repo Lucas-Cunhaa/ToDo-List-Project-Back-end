@@ -5,7 +5,7 @@ import  userController  from "./src/api/controllers/userController";
 const route = Express.Router()
 
 route.post('/todo/register', userController.registerUser )
-route.get('/todo/login', userController.loginUser)
+route.post('/todo/login', userController.loginUser)
 route.delete('/todo/delete/:id', userController.deleteUser)
 
 route.post('/todo/home', listController.createList)
