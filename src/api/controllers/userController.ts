@@ -12,14 +12,14 @@ const userController = {
     try {
         const { name, email, password } = req.body 
         if (!name || !email || !password) {
-            return res.status(400).json({ error: 'Missing required fields' });
+            return res.status(400).json({ message: 'Missing required fields' });
         }
 
         const user = new UserData(name, email, password)
         const emailExists = await userQueries.getUserByEmail(email)
 
         if (emailExists) {
-             return res.status(409).json({ error: MESSAGES.USER_EXISTS });
+             return res.status(409).json({ message: MESSAGES.USER_EXISTS });
         } 
         
         const data = await userQueries.createUser(user)
