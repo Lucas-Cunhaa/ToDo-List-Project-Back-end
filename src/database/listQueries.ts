@@ -24,7 +24,10 @@ export class ListQueries extends SequelizeConnection {
 
     async getAllLists(user_id: number) {
         try {
-            const data = await List.findAll({ where : {user_id: user_id} })
+            const data = await List.findAll({
+                 where : {user_id: user_id}, 
+                 attributes: ['id', 'title', 'description']
+                })
             return data
         } catch (error) {
             console.error("ERROR ON GET ALL LISTS QUERIE", error)

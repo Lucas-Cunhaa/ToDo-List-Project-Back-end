@@ -26,7 +26,10 @@ export class TaskQueries extends SequelizeConnection {
     }
     async getAllTasks(list_id: number) {
         try {
-            const data = await Task.findAll({ where: {list_id: list_id } })
+            const data = await Task.findAll({
+                 where: {list_id: list_id },  
+                 attributes: ['id', 'title', 'description', 'state']
+                })
             return data
         } catch (error) {
             console.error("ERROR ON GET ALL TASKS QUERIE", error)
