@@ -1,8 +1,13 @@
 import { Response } from "express";
 
-export function checkData(data: any, res: Response, message: string, errorMessage: string)  {
-     if(data !== null && data !== undefined) {
-         res.status(200).json({message: message, data: data})
+export function checkData(dataResponse: any, res: Response, message: string, errorMessage: string)  {
+     if(dataResponse !== null && dataResponse !== undefined) {
+         res.status(200).json({
+            data: {
+                dataResponse : dataResponse, 
+                message: message
+            }
+        })
      } else {
          res.statusMessage = errorMessage
          res.status(400).end()
