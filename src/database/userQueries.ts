@@ -33,9 +33,10 @@ export class UserQueries extends SequelizeConnection{
    async getUserByEmailAndPassword(email: string, password: string){
         try {
             const data = await User.findOne({
-                where: {email : email, password : password}
+                where: {email : email, password : password}, 
+                attributes: ['id']
             })
-             return data
+            return data
         } catch (error) {
             console.error("ERROR ON getUserByEmailAndPassword", error)
         }
