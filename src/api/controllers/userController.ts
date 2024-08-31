@@ -10,16 +10,18 @@ const userQueries = new UserQueries(sequelize)
 const userController = {
     registerUser: async (req : Request, res : Response) => {
     try {
-        const { name, email, password } = req.body 
-        if (!name || !email || !password) {
-            return res.status(400).json({ message: 'Missing required fields' });
+        const { email, username, password } = req.body 
+        if (!username || !email || !password) {
+            res.statusMessage = 'Missing required fields'
+            return res.status(400).end()
         }
 
-        const user = new UserData(name, email, password)
+        const user = new UserData(username, email, password)
         const emailExists = await userQueries.getUserByEmail(email)
 
         if (emailExists) {
-             return res.status(409).json({ message: MESSAGES.USER_EXISTS });
+             res.statusMessage = MESSAGES.USER_EXISTS
+             return res.status(409).end();
         } 
         
         const data = await userQueries.createUser(user)
@@ -27,7 +29,8 @@ const userController = {
 
     } catch (error) {
         console.error("ERROR ON CONTROLLER CREATE USER", error)
-        res.status(400).json({ error: MESSAGES.REGISTER_FAIL})
+        res.statusMessage = MESSAGES.REGISTER_FAIL
+        res.status(404).end()
         }
     }, 
      loginUser: async (req: Request, res: Response) => {

@@ -25,13 +25,10 @@ const taskController = {
         try {
             const list_id = parseInt(req.params.id)
             const tasks = await taskQueries.getAllTasks(list_id)
-            if(tasks) {
-                res.status(200).send(tasks)
-            } else {
-                res.status(204).send(MESSAGES.TASK_UNFOUNDED)
-            }
+            checkData(tasks, res, MESSAGES.CREATE_SUCESS, MESSAGES.LOADT_FAIL)
         } catch (error) {
-            res.status(404).send(MESSAGES.LOADT_FAIL)
+            res.statusMessage = MESSAGES.LOADT_FAIL
+            res.status(404).end()
             console.error("ERROR ON GET LIST TASKS", error)
         }
     } , 
@@ -41,14 +38,9 @@ const taskController = {
             const id = parseInt(req.params.id)
             const newState = req.body.state
             const data = await taskQueries.updateTask(id, newState)
-            if(data) {
-                res.status(200).send(data)
-            } else {
-                throw new Error()
-            }
-            
+            checkData(data, res, MESSAGES.EDITED_SUCESS, MESSAGES.EDITED_FAIL)
         } catch (error) {
-            res.status(404).send(null)
+            console.error("ERROR ON CHANGE STATE CONTROLLER", error)
         }
     },
 

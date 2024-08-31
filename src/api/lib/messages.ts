@@ -21,4 +21,7 @@ export const MESSAGES = {
     LOADT_FAIL: 'Failed on load tasks', 
     DELETET_SUCCESS: 'Task has been deleted',
     DELETET_FAIL: 'Error on delete task',
+    EDITED_SUCESS: 'Edited sucefully', 
+    EDITED_FAIL: 'Failed on edit', 
+
 };

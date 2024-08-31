@@ -18,7 +18,8 @@ const listController = {
             
         } catch (error) {
             console.error("ERROR ON CREATE LIST CONTROLLER", error)
-            res.status(404).send({error: "error on creating a list"})
+            res.statusMessage = MESSAGES.CREATEL_FAIL
+            res.status(404).end()
         }
     },
 
@@ -26,13 +27,8 @@ const listController = {
         try {
             const user_id = parseInt(req.params.id) 
             const lists = await listQueries.getAllLists(user_id)
-            if(lists){
-                res.status(200).send(lists)
-            } else {
-                res.status(204).send(MESSAGES.LIST_UNFOUNDED)
-            }
+            checkData(lists, res, MESSAGES.LOADL_SUCESS, MESSAGES.LOADL_FAIL)
         } catch (error) {
-            res.status(404).send(MESSAGES.LOADL_FAIL)
             console.error("ERROR ON GET USER LISTS", error)
         }
     },
