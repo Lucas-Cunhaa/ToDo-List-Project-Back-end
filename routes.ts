@@ -6,16 +6,16 @@ const route = Express.Router()
 
 route.post('/todo/register', userController.registerUser )
 route.post('/todo/login', userController.loginUser)
-route.delete('/todo/delete/', userController.deleteUser)
+route.delete('/todo/delete', userController.deleteUser)
 
 route.post('/todo/home', listController.createList)
-route.get('/todo/home/', listController.getUserLists)
-route.delete('/todo/home/', listController.deleteList)
+route.get('/todo/home', listController.getUserLists)
+route.delete('/todo/home', listController.deleteList)
 
 route.post('/todo/tasks', taskController.createTask)
-route.get('/todo/tasks/', taskController.getListTasks)
-route.put('/todo/tasks/', taskController.changeState)
-route.delete('/todo/tasks/', taskController.deleteTask)
+route.get('/todo/tasks', taskController.getListTasks)
+route.put('/todo/tasks', taskController.changeState)
+route.delete('/todo/tasks', taskController.deleteTask)
 
 export default route
 
