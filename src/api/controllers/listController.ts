@@ -25,7 +25,13 @@ const listController = {
 
     getUserLists: async (req: Request, res: Response) => {
         try {
-            const user_id = parseInt(req.params.id) 
+            const user_id = parseInt(req.query.id as string)
+
+            if(isNaN(user_id)) {
+                res.statusMessage = "Invalid user Id"
+                return res.status(400).end()
+            }
+
             const lists = await listQueries.getAllLists(user_id)
             checkData(lists, res, MESSAGES.LOADL_SUCESS, MESSAGES.LOADL_FAIL)
         } catch (error) {
@@ -35,7 +41,13 @@ const listController = {
 
     deleteList: async (req: Request, res: Response) => {
         try{
-            const id = parseInt(req.params.id) 
+            const id = parseInt(req.query.id as string)
+
+            if(isNaN(id)) {
+                res.statusMessage = "Invalid Id"
+                return res.status(400).end()
+            } 
+
             const data = await listQueries.deleteList(id)
             checkData(data, res, MESSAGES.DELETEL_SUCCESS, MESSAGES.DELETEL_FAIL)
         } catch (error) {

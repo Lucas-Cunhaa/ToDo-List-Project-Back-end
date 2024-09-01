@@ -23,5 +23,4 @@ export const MESSAGES = {
     DELETET_FAIL: 'Error deleting task',
     EDITED_SUCESS: 'Edited sucefully', 
     EDITED_FAIL: 'Failed editing', 
-
 };

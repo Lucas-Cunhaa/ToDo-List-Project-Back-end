@@ -23,7 +23,13 @@ const taskController = {
 
     getListTasks: async (req: Request, res: Response) => {
         try {
-            const list_id = parseInt(req.params.id)
+            const list_id = parseInt(req.query.id as string)
+
+            if(isNaN(list_id)) {
+                res.statusMessage = "Invalid task Id"
+                return res.status(400).end()
+            }
+
             const tasks = await taskQueries.getAllTasks(list_id)
             checkData(tasks, res, MESSAGES.CREATE_SUCESS, MESSAGES.LOADT_FAIL)
         } catch (error) {
@@ -46,7 +52,13 @@ const taskController = {
 
     deleteTask: async (req: Request, res: Response) => {
        try {
-           const id = parseInt(req.params.id) 
+            const id = parseInt(req.query.id as string)
+
+            if(isNaN(id)) {
+                res.statusMessage = "Invalid  Id"
+                return res.status(400).end()
+            }
+
            const data = await taskQueries.deleteTask(id)
            checkData(data, res, MESSAGES.DELETET_SUCCESS, MESSAGES.DELETET_FAIL)
 

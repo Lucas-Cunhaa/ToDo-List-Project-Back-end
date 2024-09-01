@@ -12,4 +12,4 @@ export function checkData(dataResponse: any, res: Response, message: string, err
          res.statusMessage = errorMessage
          res.status(400).end()
     } 
-}
+} 
