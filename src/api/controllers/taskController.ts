@@ -41,7 +41,13 @@ const taskController = {
 
     changeState: async (req: Request, res: Response) => {
         try {
-            const id = parseInt(req.params.id)
+            const id = parseInt(req.query.id as string)
+
+            if(isNaN(id)) {
+                res.statusMessage = "Invalid task Id"
+                return res.status(400).end()
+            }
+
             const newState = req.body.state
             const data = await taskQueries.updateTask(id, newState)
             checkData(data, res, MESSAGES.EDITED_SUCESS, MESSAGES.EDITED_FAIL)
