@@ -39,6 +39,22 @@ const listController = {
         }
     },
 
+    getListName: async (req: Request, res: Response) => {
+        try {
+            const id = parseInt(req.query.id as string)
+
+            if(isNaN(id)) {
+                res.statusMessage = "Invalid  Id"
+                return res.status(400).end()
+            }
+
+            const lists = await listQueries.getListsName(id)
+            checkData(lists, res, MESSAGES.LOADL_SUCESS, MESSAGES.LOADL_FAIL)
+        } catch (error) {
+            console.error("ERROR ON GET LIST NAME", error)
+        }
+    },
+
     deleteList: async (req: Request, res: Response) => {
         try{
             const id = parseInt(req.query.id as string)

@@ -10,6 +10,7 @@ route.delete('/todo/delete', userController.deleteUser)
 
 route.post('/todo/home', listController.createList)
 route.get('/todo/home', listController.getUserLists)
+route.get('/todo/home/name', listController.getListName)
 route.delete('/todo/home', listController.deleteList)
 
 route.post('/todo/tasks', taskController.createTask)
