@@ -33,18 +33,7 @@ export class ListQueries extends SequelizeConnection {
             console.error("ERROR ON GET ALL LISTS QUERIE", error)
         }
     }
-    async getListsName(id: number) {
-        try {
-            const data = await List.findOne({
-                 where : {id: id}, 
-                 attributes: ['title', 'description']
-                })
-            return data
-        } catch (error) {
-            console.error("ERROR ON GET LIST NAME QUERIE", error)
-        }
-    }
-
+    
     async deleteList(id: number) {
         try {
             const data = await List.destroy({where: { id: id } })
