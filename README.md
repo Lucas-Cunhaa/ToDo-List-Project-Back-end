@@ -77,8 +77,8 @@ This is the back-end of a ToDo List application built with **TypeScript**, **Exp
 
 ### Prerequisites
 
-1. Make sure you have installed:
-- Node.js (v16 or newer)
+- Make sure you have installed:
+  Node.js (v16 or newer)
 
 ### Installation
 
