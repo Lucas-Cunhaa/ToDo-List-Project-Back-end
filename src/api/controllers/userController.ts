@@ -35,7 +35,6 @@ const userController = {
     }, 
      loginUser: async (req: Request, res: Response) => {
         try {
-            console.log(req)
             const {email, password} = req.body
             const data = await userQueries.getUserByEmailAndPassword(email, password)
             checkData(data, res, MESSAGES.LOGIN_SUCCESS, MESSAGES.INVALID_CREDENTIALS)
